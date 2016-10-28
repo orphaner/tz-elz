@@ -5,13 +5,13 @@
   },
   "ignore":[],
   "only": [
-    "logger_name"
+    "class_name"
   ],
   "cases": [
     {
       "in": "{\"@timestamp\":\"2016-10-26T21:33:41.174+02:00\",\"@version\":1,\"message\":\"My text log is in json with KV : key=value\",\"logger_name\":\"org.beroot.technozaure.elk.JsonLogService\",\"thread_name\":\"http-nio-8080-exec-5\",\"level\":\"INFO\",\"level_value\":20000,\"HOSTNAME\":\"zenico\"}",
       "out": {
-        "class_name": "TextLogService"
+        "class_name": "org.beroot.technozaure.elk.JsonLogService"
       }
     }
   ]

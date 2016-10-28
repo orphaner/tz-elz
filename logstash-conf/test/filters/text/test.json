@@ -9,13 +9,13 @@
   ],
   "cases": [
     {
-      "in": "2016-10-25 21:10:20,646 INFO  [http-nio-8080-exec-9] org.beroot.TextLogService: My text log is 'Value'",
+      "in": "2016-10-25 21:10:20,646 INFO  [http-nio-8080-exec-9] TextLogService: My text log is 'Value'",
       "out": {
         "timestamp": "2016-10-25 21:10:20,646",
         "@timestamp": "2016-10-25T19:10:20.646Z",
         "level": "INFO",
         "thread_name": "http-nio-8080-exec-9",
-        "logger_name": "TextLogService",
+        "class_name": "TextLogService",
         "message": "My text log is 'Value'"
       }
     }
