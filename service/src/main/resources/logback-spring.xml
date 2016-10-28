@@ -1,7 +1,7 @@
 <configuration>
 
     <appender name="TEXT_LOG_FILE" class="ch.qos.logback.core.FileAppender">
-        <file>../elk/logs/text.log</file>
+        <file>logs/text.log</file>
         <encoder>
             <!--<pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>-->
             <pattern>%d %-5level [%thread] %logger: %msg%n</pattern>
@@ -14,7 +14,7 @@
 
 
     <appender name="JSON_LOG_FILE" class="ch.qos.logback.core.FileAppender">
-        <file>../elk/logs/json.log</file>
+        <file>logs/json.log</file>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 
@@ -24,7 +24,7 @@
 
 
     <appender name="COMPOSITE_JSON_LOG_FILE" class="ch.qos.logback.core.FileAppender">
-        <file>../elk/logs/composite-json.log</file>
+        <file>logs/composite-json.log</file>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
             <provider
                     class="net.logstash.logback.composite.loggingevent.LoggingEventPatternJsonProvider">
