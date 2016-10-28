@@ -3,8 +3,8 @@
     <appender name="TEXT_LOG_FILE" class="ch.qos.logback.core.FileAppender">
         <file>logs/text.log</file>
         <encoder>
-            <!--<pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>-->
-            <pattern>%d %-5level [%thread] %logger: %msg%n</pattern>
+            <pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>
+            <!--<pattern>%d %-5level [%thread] %logger: %msg%n</pattern>-->
         </encoder>
     </appender>
 
