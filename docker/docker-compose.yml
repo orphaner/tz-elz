@@ -1,6 +1,8 @@
 filebeat:
-  build: filebeat/
+  image: prima/filebeat:5.0.0-rc1
+  command: filebeat -e -d "*" -c /etc/filebeat/filebeat.yml
   volumes:
+    - ./filebeat/config/:/etc/filebeat/
     - ../logs/:/applog/
   links:
     - logstash
