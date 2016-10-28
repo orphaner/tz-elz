@@ -1,0 +1,74 @@
+{
+  "order": 0,
+  "template": "logstash-*",
+  "settings": {
+    "index": {
+      "refresh_interval": "1s",
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    }
+  },
+  "mappings": {
+    "_default_": {
+      "dynamic_templates": [
+        {
+          "unindexed_longs": {
+            "match_mapping_type": "long",
+            "match": "*",
+            "mapping": {
+              "type": "long",
+              "index": false,
+              "doc_values": false
+            }
+          }
+        },
+        {
+          "unindexed_doubles": {
+            "match_mapping_type": "double",
+            "match": "*",
+            "mapping": {
+              "type": "float",
+              "index": false,
+              "doc_values": false
+            }
+          }
+        },
+        {
+          "all_strings_as_keywords": {
+            "match_mapping_type": "string",
+            "match": "*",
+            "mapping": {
+              "type": "keyword",
+              "doc_values": true
+            }
+          }
+        },
+        {
+          "other_types": {
+            "match_mapping_type": "*",
+            "match": "*",
+            "mapping": {
+              "type": "{dynamic_type}",
+              "doc_values": false
+            }
+          }
+        }
+      ],
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "message": {
+          "type": "text",
+          "store": "true"
+        },
+        "msg": {
+          "type": "text",
+          "store": "true",
+          "fielddata": "true"
+        }
+      }
+    }
+  }
+}
+

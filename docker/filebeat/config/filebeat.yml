@@ -1,0 +1,20 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /applog/text.log
+      document_type: textlog
+    -
+      paths:
+        - /applog/json.log
+      document_type: jsonlog
+    -
+      paths:
+        - /applog/composite-json.log
+      document_type: compositelog
+
+output:
+  logstash:
+    hosts: ["logstash:5044"]
+
+logging.level: debug

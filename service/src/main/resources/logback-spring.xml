@@ -1,0 +1,53 @@
+<configuration>
+
+    <appender name="TEXT_LOG_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>../elk/logs/text.log</file>
+        <encoder>
+            <!--<pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>-->
+            <pattern>%d %-5level [%thread] %logger: %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.beroot.technozaure.elk.TextLogService" level="INFO">
+        <appender-ref ref="TEXT_LOG_FILE"/>
+    </logger>
+
+
+    <appender name="JSON_LOG_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>../elk/logs/json.log</file>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <logger name="org.beroot.technozaure.elk.JsonLogService" level="INFO">
+        <appender-ref ref="JSON_LOG_FILE"/>
+    </logger>
+
+
+    <appender name="COMPOSITE_JSON_LOG_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>../elk/logs/composite-json.log</file>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <provider
+                    class="net.logstash.logback.composite.loggingevent.LoggingEventPatternJsonProvider">
+            </provider>
+            <provider class="net.logstash.logback.composite.loggingevent.ArgumentsJsonProvider">
+                <includeNonStructuredArguments>true</includeNonStructuredArguments>
+                <nonStructuredArgumentsFieldPrefix>prefix</nonStructuredArgumentsFieldPrefix>
+            </provider>
+        </encoder>
+    </appender>
+
+    <logger name="org.beroot.technozaure.elk.CompositeJsonLogService" level="INFO">
+        <appender-ref ref="COMPOSITE_JSON_LOG_FILE"/>
+    </logger>
+
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="ERROR">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

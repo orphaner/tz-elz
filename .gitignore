@@ -1,0 +1,4 @@
+logs
+docker/elasticsearch/data/
+*.iml
+service/target/

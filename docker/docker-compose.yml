@@ -1,0 +1,44 @@
+filebeat:
+  build: filebeat/
+  volumes:
+    - ../logs/:/applog/
+  links:
+    - logstash
+
+logstash:
+  image: logstash:5.0.0-rc1
+  command: logstash -f /etc/logstash/conf.d/logstash.conf --config.reload.automatic --config.reload.interval 1
+  volumes:
+    - ../logstash-conf/logstash/conf.d:/etc/logstash/conf.d
+    - ../logstash-conf/logstash/template:/etc/logstash/template
+  ports:
+    - "5044:5044"
+  links:
+    - elasticsearch
+
+elasticsearch:
+  image: elasticsearch:5.0.0-rc1
+  hostname: elasticsearch
+  ports:
+    - "9200:9200/tcp"
+  volumes:
+    - ./elasticsearch/data:/usr/share/elasticsearch/data
+
+kibana:
+  image: kibana:5.0.0-rc1
+  environment:
+    - ELASTICSEARCH_URL=http://elasticsearch:9200
+  ports:
+    - "5601:5601"
+  links:
+    - elasticsearch
+
+kopf:
+  image: lmenezes/elasticsearch-kopf
+  links:
+    - elasticsearch
+  ports:
+    - "80:80"
+  environment:
+    - KOPF_ES_SERVERS=elasticsearch:9200
+    - KOPF_SERVER_NAME=kopf
